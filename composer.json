@@ -1,32 +1,32 @@
 {
-  "name": "alexusmai/yandex-metrika",
-  "description": "Laravel 5 Yandex Metrika",
-  "keywords": ["laravel", "yandex", "metrika"],
-  "homepage": "https://github.com/alexusami/yandex-metrika",
+  "name": "softlab/weather",
+  "description": "Weather test example",
+  "keywords": ["laravel"],
+  "homepage": "https://github.com/softlab2/weather",
   "license": "MIT",
   "authors": [
     {
-      "name": "Alex Manekin",
-      "email": "alexusmai@gmail.com"
+      "name": "Max Boronin",
+      "email": "net0@mail.ru"
     }
   ],
   "require": {
-    "php": ">=5.4.0",
+    "php": ">=7.1.0",
     "illuminate/support": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*",
     "guzzlehttp/guzzle": "^6.2"
   },
   "autoload": {
     "psr-4": {
-      "Alexusmai\\YandexMetrika\\": "src"
+      "Softlab\\Weather\\": "src"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Alexusmai\\YandexMetrika\\YandexMetrikaServiceProvider"
+        "Softlab\\Weather\\WeatherServiceProvider"
       ],
       "aliases": {
-        "YandexMetrika": "Alexusmai\\YandexMetrika\\YandexMetrikaFacade"
+        "Weather": "Softlab\\Weather\\WeatherFacade"
       }
     }
   }

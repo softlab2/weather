@@ -1,11 +1,9 @@
 <?php
 
 /**
- * Настройки Yandex Metrika
+ * Настройки Weather
  */
 return [
 
     'cache'         => 60,      //Время жизни кэша в минутах
-    'counter_id'    => '',      //Id счетчика Яндекс метрики
-    'token'         => '',      //oauth token
 ];
