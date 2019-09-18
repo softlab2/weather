@@ -29,4 +29,8 @@ class Point {
     public function toArray() {
         return ['lat'=>$this->lat, 'lng'=>$this->lng];
     }
+
+    public function toString() {
+        return implode('_', $this->toArray());
+    }
 }

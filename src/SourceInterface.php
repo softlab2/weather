@@ -28,5 +28,5 @@ interface SourceInterface
      *
      * @return \Softlab\Weather\Response
      */
-    public function prepareResponse( array $data ) : WeatherResponse;
+    public function prepareResponse( $data ) : WeatherResponse;
 }

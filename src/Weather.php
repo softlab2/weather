@@ -2,9 +2,11 @@
 
 namespace Softlab\Weather;
 
-use InvalidArgumentException;
+use Closure;
+use Softlab\Weather\Response as WeatherResponse;
 use \Softlab\Weather\Source as WeatherSource;
-use \Softlab\Weather\Response as WeatherResponse;
+use Softlab\Weather\Point;
+use InvalidArgumentException;
 use Config;
 
 class Weather
@@ -52,7 +54,11 @@ class Weather
         return $this;
     }
 
-    public function getWeather() {
-        return $this->{$this->default_source_alias}->get();
+    public function request() : Source {
+        $this->{$this->default_source_alias};
+    }
+
+    public function get( array $coords ) : WeatherResponse {
+        return $this->{$this->default_source_alias}->get( new Point( $coords ) );
     }
 }

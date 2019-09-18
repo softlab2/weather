@@ -1,21 +1,37 @@
 <?php
+declare(strict_types = 1);
 
 namespace Softlab\Weather;
 
-use NumberFormatter;
-
 class Response {
-    private $temp;
+    const STATUS_NOT_SET = -1;
+    const STATUS_ERROR = 0;
+    const STATUS_OK = 1;
 
-    public function __construct( float $temp ) {
-        $this->temp = $temp;
+    private $data = [];
+    private $status;
+
+    public function __construct( int $status = -1, array $data = []) {
+        $this->status = $status;
+        $this->data = $data;
     }
 
-    public function getTemp() : float {
-        return $this->temp;
+    public function getData() : array {
+        return $this->data;
+    }
+
+    public function getStatus() : int {
+        return $this->status;
     }
 
     public function toString(){
-        return $this->temp;
+        if(!empty($this->data['temp']))
+            return $this->data['temp'];
+        else
+            return '';
+    }
+
+    public function __invoke() :bool {
+        return (bool)$this->data;
     }
 }

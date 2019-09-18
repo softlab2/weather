@@ -31,6 +31,8 @@ class WeatherServiceProvider extends ServiceProvider
     {
         require __DIR__ . '/helpers.php';
         
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        
         $this->app->bind('weather', function () {
             return Weather::getInstance();
         });

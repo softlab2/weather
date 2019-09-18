@@ -2,6 +2,7 @@
 
 namespace Softlab\Weather\Sources;
 
+use App\Widgets\Weather;
 use \Softlab\Weather\Source;
 use \Softlab\Weather\SourceInterface;
 use \Softlab\Weather\Request as WeatherRequest;
@@ -12,7 +13,7 @@ class YandexSource extends Source implements SourceInterface
 {
     protected $source = 'yandex';
 
-   /**
+    /**
      * Receive data from wheater api service.
      *
      * @param  \Softlab\Weather\Data\Request  $request
@@ -29,7 +30,7 @@ class YandexSource extends Source implements SourceInterface
      *
      * @return \Softlab\Weather\Request
      */
-    public function prepareRequest( Point $point ) : WeatherRequest {
+    public function prepareRequest( Point $point ) : WeatherRequest {        
         $params = [
             'lat' => $point->lat(),
             'lon' => $point->lng()
@@ -45,6 +46,7 @@ class YandexSource extends Source implements SourceInterface
             $this->config('method'),
             $headers
         );
+
     }
 
     /**
@@ -52,30 +54,17 @@ class YandexSource extends Source implements SourceInterface
      *
      * @return \Softlab\Weather\Request
      */
-    public function prepareResponse( array $data ) : WeatherResponse {
-        return new WeatherResponse( (float) $data['temp']);
-    }
-
-    public function __construct()
-    {
-        $params = [
-            // 'lat' => $point->lat,
-            // 'lon' => $point->lng,
-            'lang' => $this->config('lang'),
-            'limit' => $this->config('limit'),
-            'hours' => $this->config('hours'),
-            'extra' => $this->config('extra'),
-        ];
-
-        $headers = [
-            'X-Yandex-API-Key' => $this->config('api_key')
-        ];
-
-        parent::__construct(
-            $this->config('url'),
-            $params,
-            $this->config('method'),
-            $headers
-        );
+    public function prepareResponse( $response ) : WeatherResponse {
+        $data = [];
+        if($response->getStatusCode() == '200'){
+            $status = WeatherResponse::STATUS_OK;
+            $responseObject = json_decode($response->getBody()->getContents());
+            if(!empty($responseObject->fact->temp)){
+                $data['temp'] = $responseObject->fact->temp;
+            }
+        }else{
+            $status = WeatherResponse::STATUS_ERROR;
+        }
+        return new WeatherResponse( $status, $data );
     }
 }
