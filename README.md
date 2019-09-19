@@ -4,6 +4,15 @@
 
 ## Установка
 
+*******
+Packagist тормозит с обновлением, положил композер, который подключает покат по симлинку.
+Нужно дополнительно зайти в папку packages и склонировать с гитхаба:
+
+git clone https://github.com/softlab2/weather.git
+
+*******
+
+
 С помощью Composer
 
 composer require softlabnet/weather
