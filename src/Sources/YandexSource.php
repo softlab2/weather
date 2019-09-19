@@ -11,19 +11,8 @@ use \Softlab\Weather\Point;
 
 class YandexSource extends Source implements SourceInterface
 {
+    // Название источника данных в файле конфигурации
     protected $source = 'yandex';
-
-    /**
-     * Receive data from wheater api service.
-     *
-     * @param  \Softlab\Weather\Data\Request  $request
-     * @return \Softlab\Weather\Data\Response
-     */
-    public static function weather(WeatherRequest $request) : WeatherResponse
-    {
-        //static::request()
-        return new WeatherResponse([]);
-    }
 
     /**
      * Receive data from wheater api service.

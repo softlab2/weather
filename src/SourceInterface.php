@@ -7,13 +7,6 @@ use \Softlab\Weather\Response as WeatherResponse;
 
 interface SourceInterface
 {
-    /**
-     * Receive data from wheater api service.
-     *
-     * @param  \Softlab\Weather\Request  $request
-     * @return \Softlab\Weather\Response
-     */
-    public static function weather(WeatherRequest $request) : WeatherResponse;
 
     /**
      * Receive data from wheater api service.
